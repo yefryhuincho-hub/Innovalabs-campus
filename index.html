@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validador Público de Certificados - Innova Labs & Ecos Foundation</title>
+    <title>Validador de Certificados - Innova Labs</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Iconos de Lucide -->
@@ -24,11 +24,6 @@
                             200: '#d5dae9',
                             800: '#15223c',
                             900: '#091442', // Azul marino profundo de Innova Labs
-                        },
-                        tealEcos: {
-                            DEFAULT: '#00A499', // Turquesa de Ecos Foundation
-                            dark: '#00857c',
-                            light: '#e6f6f5',
                         },
                         greenLeaf: {
                             DEFAULT: '#00D182', // Verde vibrante de la hoja de Innova Labs
@@ -62,31 +57,17 @@
 </head>
 <body class="text-slate-800 min-h-screen flex flex-col antialiased">
 
-    <!-- CABECERA INSTITUCIONAL CON LOGOS VECTORIALES -->
+    <!-- CABECERA INSTITUCIONAL CON LOGO DE INNOVA LABS -->
     <header class="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-40 print:hidden">
         <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-col md:flex-row justify-between items-center gap-4">
             
-            <!-- Logotipos Reconstruidos (Ecos Foundation | Innova Labs) -->
-            <div class="flex items-center gap-3 sm:gap-4">
-                <!-- Ecos Foundation SVG -->
-                <div class="flex items-center">
-                    <svg class="h-10 sm:h-12 w-auto" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g transform="translate(5, 5)">
-                            <circle cx="25" cy="25" r="23" stroke="#00A499" stroke-width="4" fill="none"/>
-                            <path d="M25 10 C21 17 21 32 25 35 C29 32 29 17 25 10 Z" fill="#00A499"/>
-                            <path d="M25 25 C15 25 11 31 15 36 C21 34 23 30 25 25 Z" fill="#00A499" opacity="0.85"/>
-                            <path d="M25 25 C35 25 39 31 35 36 C29 34 27 30 25 25 Z" fill="#00A499" opacity="0.85"/>
-                        </g>
-                        <text x="65" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="28" fill="#00A499" letter-spacing="-0.5">ecos</text>
-                        <text x="65" y="50" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" fill="#4B5563" letter-spacing="3.5">FOUNDATION</text>
-                    </svg>
-                </div>
-
-                <!-- Línea Divisoria -->
-                <div class="h-8 w-[1px] bg-slate-300"></div>
-
-                <!-- Innova Labs SVG -->
-                <div class="flex items-center">
+            <!-- Logotipo Único Innova Labs (Carga logo.png o Fallback Vectorial) -->
+            <div class="flex items-center">
+                <img id="main-logo-img" src="logo.png" alt="Innova Labs" class="h-12 w-auto object-contain hidden" 
+                     onload="this.classList.remove('hidden'); document.getElementById('fallback-logo').classList.add('hidden');" 
+                     onerror="this.classList.add('hidden'); document.getElementById('fallback-logo').classList.remove('hidden');">
+                
+                <div id="fallback-logo" class="flex items-center gap-3">
                     <svg class="h-10 sm:h-12 w-auto" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g transform="translate(5, 5)">
                             <circle cx="25" cy="25" r="23" stroke="#091442" stroke-width="3" fill="none"/>
@@ -120,8 +101,8 @@
     </header>
 
     <!-- NOTIFICACIONES TOAST -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 max-w-sm w-full bg-white border-l-4 border-tealEcos p-4 rounded-r-xl shadow-xl flex items-start gap-3 pointer-events-none print:hidden">
-        <div id="toast-icon-box" class="p-1 rounded-lg bg-tealEcos-light text-tealEcos">
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 max-w-sm w-full bg-white border-l-4 border-navy-900 p-4 rounded-r-xl shadow-xl flex items-start gap-3 pointer-events-none print:hidden">
+        <div id="toast-icon-box" class="p-1 rounded-lg bg-slate-100 text-navy-900">
             <i data-lucide="info" class="w-5 h-5"></i>
         </div>
         <div class="flex-grow">
@@ -146,7 +127,7 @@
                 </div>
                 <div class="space-y-1">
                     <p id="modal-qr-student" class="font-bold text-slate-900 text-sm">Estudiante</p>
-                    <p id="modal-qr-code" class="text-xs font-mono font-bold text-tealEcos bg-tealEcos-light px-2.5 py-1 rounded-full inline-block">CÓDIGO</p>
+                    <p id="modal-qr-code" class="text-xs font-mono font-bold text-greenLeaf-dark bg-greenLeaf-light px-2.5 py-1 rounded-full inline-block">CÓDIGO</p>
                 </div>
                 <p class="text-[11px] text-slate-500 leading-normal px-2">
                     Este código QR redirige directamente a la consulta de verificación de este diploma, cargando los datos de forma inmediata y automatizada.
@@ -202,7 +183,7 @@
                     Validador Público de Logros Académicos
                 </h1>
                 <p class="text-slate-600 text-xs sm:text-sm max-w-md mx-auto">
-                    Introduce el código impreso o escanea el QR de tu diploma emitido por <strong>Innova Labs</strong> bajo el aval de <strong>Ecos Foundation</strong>.
+                    Introduce el código impreso o escanea el QR de tu diploma emitido por <strong>Innova Labs</strong>.
                 </p>
             </div>
 
@@ -210,7 +191,7 @@
             <div class="bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden">
                 <!-- Pestañas de entrada -->
                 <div class="flex border-b border-slate-100 bg-slate-50">
-                    <button onclick="toggleVerifyTab('code')" id="tab-code" class="flex-1 py-4 text-center font-bold text-xs sm:text-sm border-b-2 border-tealEcos text-tealEcos flex items-center justify-center gap-2">
+                    <button onclick="toggleVerifyTab('code')" id="tab-code" class="flex-1 py-4 text-center font-bold text-xs sm:text-sm border-b-2 border-navy-900 text-navy-900 flex items-center justify-center gap-2">
                         <i data-lucide="key" class="w-4 h-4"></i>
                         Código del Certificado
                     </button>
@@ -229,10 +210,10 @@
                                 <i data-lucide="binary" class="w-5 h-5"></i>
                             </span>
                             <input type="text" id="search-code-input" placeholder="Ej: IL-10293" 
-                                class="w-full pl-11 pr-4 py-3.5 rounded-xl border-2 border-slate-200 focus:border-tealEcos focus:ring-0 outline-none text-base font-mono font-bold tracking-wider transition-all uppercase placeholder-slate-400">
+                                class="w-full pl-11 pr-4 py-3.5 rounded-xl border-2 border-slate-200 focus:border-navy-900 focus:ring-0 outline-none text-base font-mono font-bold tracking-wider transition-all uppercase placeholder-slate-400">
                         </div>
                     </div>
-                    <!-- Botón de verificación con animación de atención -->
+                    <!-- Botón de verificación -->
                     <button onclick="handleCodeVerification()" id="btn-submit-verification" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-4 px-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
                         <i data-lucide="search" class="w-4 h-4 text-greenLeaf"></i>
                         Verificar Autenticidad
@@ -256,7 +237,7 @@
                                 </p>
                             </div>
                             <div class="flex flex-wrap justify-center gap-2">
-                                <button onclick="startCameraScanner()" class="bg-tealEcos hover:bg-tealEcos-dark text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-2 shadow transition-all">
+                                <button onclick="startCameraScanner()" class="bg-navy-900 hover:bg-navy-800 border border-slate-700 text-white text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-2 shadow transition-all">
                                     <i data-lucide="camera" class="w-4 h-4"></i> Iniciar Escáner Real
                                 </button>
                                 <button onclick="triggerDemoScannerSim()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold py-2.5 px-4 rounded-xl flex items-center gap-2 shadow transition-all border border-slate-700">
@@ -277,7 +258,7 @@
 
                 <!-- RESPUESTA POSITIVA: CERTIFICADO AUTÉNTICO -->
                 <div id="certificate-details-box" class="hidden bg-white rounded-2xl border-2 border-greenLeaf shadow-xl overflow-hidden">
-                    <div class="bg-gradient-to-r from-greenLeaf to-tealEcos p-6 text-white text-center space-y-2 relative">
+                    <div class="bg-gradient-to-r from-greenLeaf to-navy-900 p-6 text-white text-center space-y-2 relative">
                         <div class="absolute right-4 top-4 opacity-10">
                             <i data-lucide="award" class="w-20 h-20"></i>
                         </div>
@@ -309,7 +290,7 @@
                         <!-- Detalles de Curso -->
                         <div class="bg-navy-50/50 rounded-xl p-4 border border-navy-100/50 space-y-3">
                             <div class="space-y-0.5">
-                                <span class="text-[9px] font-bold text-tealEcos uppercase tracking-widest block" id="detail-cert-type-label">Programa Académico</span>
+                                <span class="text-[9px] font-bold text-navy-900 uppercase tracking-widest block" id="detail-cert-type-label">Programa Académico</span>
                                 <h4 id="detail-course-name" class="text-sm sm:text-base font-bold text-navy-900">Nombre del Programa</h4>
                             </div>
                             <div class="grid grid-cols-2 gap-4 pt-3 border-t border-navy-100">
@@ -330,17 +311,17 @@
 
                         <!-- Firmas e Instituciones -->
                         <div class="flex items-start gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
-                            <div class="w-8 h-8 flex-shrink-0 bg-white rounded-full border border-slate-100 flex items-center justify-center text-tealEcos">
-                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                            <div class="w-8 h-8 flex-shrink-0 bg-white rounded-full border border-slate-100 flex items-center justify-center text-navy-900">
+                                <i data-lucide="shield-check" class="w-5 h-5 text-greenLeaf-dark"></i>
                             </div>
                             <div class="text-[11px] text-slate-500 leading-relaxed">
-                                Este registro ha sido consultado públicamente bajo el protocolo de transparencia académica de <strong>Innova Labs</strong> y la auditoría directiva de <strong>Ecos Foundation</strong>. No presenta alteraciones y es plenamente válido.
+                                Este registro ha sido consultado públicamente bajo el protocolo de transparencia académica de <strong>Innova Labs</strong>. No presenta alteraciones y es plenamente válido.
                             </div>
                         </div>
 
                         <!-- Ver Diploma Completo -->
                         <button onclick="renderFullDiplomaView()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3 px-4 rounded-xl transition-all text-xs flex items-center justify-center gap-2">
-                            <i data-lucide="award" class="w-4 h-4 text-tealEcos"></i>
+                            <i data-lucide="award" class="w-4 h-4 text-greenLeaf-dark"></i>
                             Visualizar Diploma Académico Completo / Imprimir
                         </button>
                     </div>
@@ -418,11 +399,11 @@
                     <!-- Configuración rápida de políticas -->
                     <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-3">
                         <h3 class="font-bold text-navy-900 text-sm flex items-center gap-2">
-                            <i data-lucide="sliders" class="w-4.5 h-4.5 text-tealEcos"></i> Prefijo de Códigos
+                            <i data-lucide="sliders" class="w-4.5 h-4.5 text-navy-900"></i> Prefijo de Códigos
                         </h3>
                         <div class="space-y-1">
                             <label class="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">Prefijo de Código Único</label>
-                            <input type="text" id="cfg-prefix-input" oninput="saveConfigSettings()" class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-tealEcos text-xs font-mono font-bold uppercase" placeholder="Ej: IL-2026-">
+                            <input type="text" id="cfg-prefix-input" oninput="saveConfigSettings()" class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-navy-900 text-xs font-mono font-bold uppercase" placeholder="Ej: IL-2026-">
                             <p class="text-[9px] text-slate-400">Todos los certificados generados comenzarán con esta clave.</p>
                         </div>
                     </div>
@@ -430,23 +411,23 @@
                     <!-- Registrar Nuevo Diploma -->
                     <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
                         <h3 class="font-bold text-navy-900 text-sm flex items-center gap-2">
-                            <i data-lucide="plus-circle" class="w-4.5 h-4.5 text-greenLeaf"></i> Registrar Estudiante
+                            <i data-lucide="plus-circle" class="w-4.5 h-4.5 text-greenLeaf-dark"></i> Registrar Estudiante
                         </h3>
                         
                         <form id="form-registration" onsubmit="event.preventDefault(); emitNewCertificate();" class="space-y-3.5">
                             <div class="space-y-1">
                                 <label class="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">Nombre Completo del Alumno</label>
-                                <input type="text" id="student-name-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-tealEcos text-xs" placeholder="Nombre completo">
+                                <input type="text" id="student-name-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-navy-900 text-xs" placeholder="Nombre completo">
                             </div>
                             <div class="space-y-1">
                                 <label class="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">Nº Identificación (DNI / RUT / Pasaporte)</label>
-                                <input type="text" id="student-id-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-tealEcos text-xs font-mono" placeholder="Ej: 11.222.333">
+                                <input type="text" id="student-id-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-navy-900 text-xs font-mono" placeholder="Ej: 11.222.333">
                             </div>
 
                             <!-- TIPO DE CERTIFICADO -->
                             <div class="space-y-1">
                                 <label class="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">Tipo de Certificación</label>
-                                <select id="cert-type-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-tealEcos text-xs bg-white">
+                                <select id="cert-type-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-navy-900 text-xs bg-white">
                                     <option value="Taller">Taller</option>
                                     <option value="Curso">Curso</option>
                                     <option value="Diplomado">Diplomado</option>
@@ -458,17 +439,17 @@
                             <!-- TEMA / CURSO CON ENTRADA DE TEXTO LIBRE -->
                             <div class="space-y-1">
                                 <label class="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">Tema del Certificado</label>
-                                <input type="text" id="course-name-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-tealEcos text-xs" placeholder="Ej: Aplicaciones Prácticas de Hidrógeno Verde">
+                                <input type="text" id="course-name-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-navy-900 text-xs" placeholder="Ej: Aplicaciones Prácticas de Hidrógeno Verde">
                             </div>
 
                             <div class="grid grid-cols-2 gap-3">
                                 <div class="space-y-1">
                                     <label class="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">Horas Lectivas</label>
-                                    <input type="number" id="course-hours-field" required min="1" max="600" class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-tealEcos text-xs" placeholder="Ej: 80">
+                                    <input type="number" id="course-hours-field" required min="1" max="600" class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-navy-900 text-xs" placeholder="Ej: 80">
                                 </div>
                                 <div class="space-y-1">
                                     <label class="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">Fecha de Emisión</label>
-                                    <input type="date" id="issue-date-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-tealEcos text-xs">
+                                    <input type="date" id="issue-date-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-navy-900 text-xs">
                                 </div>
                             </div>
 
@@ -476,11 +457,11 @@
                             <div class="grid grid-cols-2 gap-3">
                                 <div class="space-y-1">
                                     <label class="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">Fecha Inicio (Desde)</label>
-                                    <input type="date" id="start-date-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-tealEcos text-xs">
+                                    <input type="date" id="start-date-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-navy-900 text-xs">
                                 </div>
                                 <div class="space-y-1">
                                     <label class="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">Fecha Fin (Hasta)</label>
-                                    <input type="date" id="end-date-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-tealEcos text-xs">
+                                    <input type="date" id="end-date-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-navy-900 text-xs">
                                 </div>
                             </div>
 
@@ -489,26 +470,26 @@
                                 <div class="flex justify-between items-center">
                                     <span class="block text-[10px] font-extrabold text-navy-900 uppercase tracking-wider">Autoridad Firmante</span>
                                     <label class="flex items-center gap-1 text-[9px] text-slate-500 cursor-pointer select-none">
-                                        <input type="checkbox" id="save-signatory-pref" class="rounded text-tealEcos focus:ring-0"> Guardar datos
+                                        <input type="checkbox" id="save-signatory-pref" class="rounded text-navy-900 focus:ring-0"> Guardar datos
                                     </label>
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                     <div class="space-y-1">
                                         <label class="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">Nombre Completo</label>
-                                        <input type="text" id="signatory-name-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-tealEcos text-xs" placeholder="Ej: Dr. Alejandro Montenegro">
+                                        <input type="text" id="signatory-name-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-navy-900 text-xs" placeholder="Ej: Dr. Alejandro Montenegro">
                                     </div>
                                     <div class="space-y-1">
                                         <label class="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">Cargo Institucional</label>
-                                        <input type="text" id="signatory-role-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-tealEcos text-xs" placeholder="Ej: Presidencia General">
+                                        <input type="text" id="signatory-role-field" required class="w-full px-3 py-2 rounded-lg border border-slate-200 outline-none focus:border-navy-900 text-xs" placeholder="Ej: Dirección de Sostenibilidad">
                                     </div>
                                 </div>
 
-                                <!-- FORMULARIO DE CARGA DE ARCHIVO DE FIRMA (NUEVO) -->
+                                <!-- FORMULARIO DE CARGA DE ARCHIVO DE FIRMA -->
                                 <div class="space-y-1.5">
                                     <label class="block text-[9px] font-bold text-slate-500 uppercase tracking-widest">Imagen de la Firma (PNG / JPG)</label>
                                     <div class="flex flex-col items-center justify-center border-2 border-dashed border-slate-200 rounded-xl p-4 text-center hover:bg-slate-50 transition-colors cursor-pointer relative" onclick="document.getElementById('signature-file-input').click()">
                                         <i data-lucide="upload" class="w-7 h-7 text-slate-400 mb-1"></i>
-                                        <span class="text-xs font-semibold text-tealEcos">Cargar firma digital</span>
+                                        <span class="text-xs font-semibold text-navy-900">Cargar firma digital</span>
                                         <span class="text-[8.5px] text-slate-400 mt-0.5">Sugerido: Fondo transparente (PNG)</span>
                                         <input type="file" id="signature-file-input" accept="image/*" class="hidden" onchange="handleSignatureFileUpload(this)">
                                     </div>
@@ -545,9 +526,9 @@
                             <div class="relative w-full sm:w-56">
                                 <span class="absolute inset-y-0 left-0 pl-2.5 flex items-center text-slate-400">
                                     <i data-lucide="search" class="w-3.5 h-3.5"></i>
-                                </span>
+                                endspan
                                 <input type="text" id="record-search-box" oninput="renderCertificateDatabaseList(this.value)" placeholder="Buscar alumno, código o curso..." 
-                                    class="w-full pl-8 pr-3 py-1.5 rounded-lg border border-slate-200 text-xs outline-none focus:border-tealEcos">
+                                    class="w-full pl-8 pr-3 py-1.5 rounded-lg border border-slate-200 text-xs outline-none focus:border-navy-900">
                             </div>
                         </div>
 
@@ -602,53 +583,43 @@
             </div>
 
             <!-- CANVAS / DIPLOMA IMPRIMIBLE -->
-            <div id="diploma-canvas" class="bg-white max-w-4xl w-full mx-auto p-8 sm:p-14 rounded-sm shadow-2xl relative aspect-[1.414/1] flex flex-col justify-between overflow-hidden border-[16px] border-double border-tealEcos transition-all duration-300">
+            <div id="diploma-canvas" class="bg-white max-w-4xl w-full mx-auto p-8 sm:p-14 rounded-sm shadow-2xl relative aspect-[1.414/1] flex flex-col justify-between overflow-hidden border-[16px] border-double border-navy-900 transition-all duration-300">
                 
-                <!-- Fondo sutil de filigrana con logo de Ecos Foundation -->
+                <!-- Fondo sutil de filigrana con logo de Innova Labs -->
                 <div id="diploma-watermark" class="absolute inset-0 opacity-[0.015] pointer-events-none flex items-center justify-center">
-                    <svg class="w-[450px] h-[450px]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="50" r="45" stroke="#00A499" stroke-width="6" fill="none"/>
-                        <path d="M50 20 C40 35 40 65 50 70 C60 65 60 35 50 20 Z" fill="#00A499"/>
+                    <svg class="w-[400px] h-[400px]" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="30" cy="30" r="28" stroke="#091442" stroke-width="3" fill="none"/>
+                        <path d="M5 30 H55" stroke="#091442" stroke-width="1.5"/>
+                        <path d="M30 5 V55" stroke="#091442" stroke-width="2"/>
+                        <path d="M10 50 C20 48 45 40 48 15 C33 32 24 36 10 50 Z" fill="#00D182" stroke="#091442" stroke-width="1.2"/>
                     </svg>
                 </div>
 
-                <!-- Cabecera del Diploma -->
-                <div id="diploma-header" class="flex justify-between items-start border-b border-slate-100 pb-5 z-10 relative">
-                    
-                    <!-- Ecos Foundation Vector en Diploma -->
-                    <div class="flex flex-col items-start gap-1">
-                        <svg class="h-9 sm:h-11 w-auto" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g transform="translate(5, 5)">
-                                <circle cx="25" cy="25" r="23" stroke="#00A499" stroke-width="4" fill="none"/>
-                                <path d="M25 10 C21 17 21 32 25 35 C29 32 29 17 25 10 Z" fill="#00A499"/>
-                                <path d="M25 25 C15 25 11 31 15 36 C21 34 23 30 25 25 Z" fill="#00A499" opacity="0.85"/>
-                                <path d="M25 25 C35 25 39 31 35 36 C29 34 27 30 25 25 Z" fill="#00A499" opacity="0.85"/>
-                            </g>
-                            <text x="65" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="28" fill="#00A499" letter-spacing="-0.5">ecos</text>
-                            <text x="65" y="50" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" fill="#4B5563" letter-spacing="3.5">FOUNDATION</text>
-                        </svg>
-                        <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest pl-1">Organismo Regulador y Certificador</span>
+                <!-- Cabecera del Diploma (Centrado y elegante, con logo.png o Fallback) -->
+                <div id="diploma-header" class="flex flex-col items-center justify-center border-b border-slate-100 pb-5 z-10 relative space-y-2">
+                    <div class="flex items-center justify-center">
+                        <img id="diploma-logo-img" src="logo.png" alt="Innova Labs" class="h-14 w-auto object-contain hidden" 
+                             onload="this.classList.remove('hidden'); document.getElementById('diploma-fallback-logo').classList.add('hidden');" 
+                             onerror="this.classList.add('hidden'); document.getElementById('diploma-fallback-logo').classList.remove('hidden');">
+                        
+                        <div id="diploma-fallback-logo" class="flex items-center gap-3">
+                            <svg class="h-12 w-auto" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g transform="translate(5, 5)">
+                                    <circle cx="25" cy="25" r="23" stroke="#091442" stroke-width="3" fill="none"/>
+                                    <path d="M3 25 H47" stroke="#091442" stroke-width="1.5"/>
+                                    <path d="M7 13 Q25 17 43 13" stroke="#091442" stroke-width="1" fill="none"/>
+                                    <path d="M7 37 Q25 33 43 37" stroke="#091442" stroke-width="1" fill="none"/>
+                                    <path d="M25 3 V47" stroke="#091442" stroke-width="1.5"/>
+                                    <path d="M15 5 Q23 25 15 45" stroke="#091442" stroke-width="1" fill="none"/>
+                                    <path d="M35 5 Q27 25 35 45" stroke="#091442" stroke-width="1" fill="none"/>
+                                    <path d="M8 42 C16 40 40 34 43 12 C30 26 21 30 8 42 Z" fill="#00D182" stroke="#091442" stroke-width="1.2"/>
+                                </g>
+                                <text x="65" y="27" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="24" fill="#091442">Innova</text>
+                                <text x="65" y="49" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="24" fill="#091442">Labs</text>
+                            </svg>
+                        </div>
                     </div>
-
-                    <!-- Innova Labs Vector en Diploma -->
-                    <div class="flex flex-col items-end gap-1">
-                        <svg class="h-9 sm:h-11 w-auto" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g transform="translate(5, 5)">
-                                <circle cx="25" cy="25" r="23" stroke="#091442" stroke-width="3" fill="none"/>
-                                <path d="M3 25 H47" stroke="#091442" stroke-width="1.5"/>
-                                <path d="M7 13 Q25 17 43 13" stroke="#091442" stroke-width="1" fill="none"/>
-                                <path d="M7 37 Q25 33 43 37" stroke="#091442" stroke-width="1" fill="none"/>
-                                <path d="M25 3 V47" stroke="#091442" stroke-width="1.5"/>
-                                <path d="M15 5 Q23 25 15 45" stroke="#091442" stroke-width="1" fill="none"/>
-                                <path d="M35 5 Q27 25 35 45" stroke="#091442" stroke-width="1" fill="none"/>
-                                <path d="M8 42 C16 40 40 34 43 12 C30 26 21 30 8 42 Z" fill="#00D182" stroke="#091442" stroke-width="1.2"/>
-                            </g>
-                            <text x="65" y="27" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="24" fill="#091442">Innova</text>
-                            <text x="65" y="49" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="24" fill="#091442">Labs</text>
-                        </svg>
-                        <span class="text-[8px] font-bold text-navy-900/60 uppercase tracking-widest pr-1">Plataforma Ejecutora Académica</span>
-                    </div>
-
+                    <span class="text-[9px] font-bold text-navy-900/60 uppercase tracking-widest">Plataforma Ejecutora Académica Oficial</span>
                 </div>
 
                 <!-- Cuerpo Central de Texto de Diploma -->
@@ -667,14 +638,14 @@
 
                     <div class="space-y-1">
                         <p class="text-slate-500 italic text-[11px] sm:text-xs">A favor de nuestro egresado titular:</p>
-                        <h3 id="diploma-student" class="text-tealEcos font-black text-xl sm:text-2xl tracking-wide uppercase">
+                        <h3 id="diploma-student" class="text-navy-900 font-black text-xl sm:text-2xl tracking-wide uppercase">
                             Nombre del Alumno Acreditado
                         </h3>
                         <p id="diploma-id" class="text-slate-400 font-mono text-[9px] sm:text-xs font-bold">Documento de Identificación Oficial: DNI 11.222.333</p>
                     </div>
 
                     <div class="text-slate-600 text-[10px] sm:text-xs max-w-xl mx-auto leading-relaxed">
-                        Programa llevado a cabo en el período del <strong id="diploma-start-date">--</strong> al <strong id="diploma-end-date">--</strong> con un total de <strong id="diploma-hours">00</strong> horas lectivas, registrado en las actas de <strong>Innova Labs</strong> y respaldado bajo el consejo directivo de <strong>Ecos Foundation</strong>.
+                        Programa llevado a cabo en el período del <strong id="diploma-start-date">--</strong> al <strong id="diploma-end-date">--</strong> con un total de <strong id="diploma-hours">00</strong> horas lectivas, registrado en las actas de <strong>Innova Labs</strong>.
                     </div>
                 </div>
 
@@ -727,7 +698,7 @@
     <footer class="bg-white border-t border-slate-200 py-6 print:hidden">
         <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
             <p class="text-xs text-slate-400 font-semibold">
-                © 2026 Ecos Foundation & Innova Labs. Todos los derechos reservados.
+                © 2026 Innova Labs. Todos los derechos reservados.
             </p>
             <p class="text-[9.5px] text-slate-400 max-w-lg mx-auto leading-relaxed">
                 Este sistema utiliza algoritmos de encriptado de firmas locales. Cualquier alteración de certificados impresos puede ser verificada inmediatamente mediante nuestro validador público seguro.
@@ -770,7 +741,7 @@
     <script>
         // --- 1. DATOS INICIALES ACADÉMICOS DE PRUEBA ---
         // Firmas predeterminadas Base64 para demostración inicial
-        const DEFAULT_SIG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='50' viewBox='0 0 150 50'><path d='M10,25 Q30,5 60,35 T110,15 T140,30' fill='none' stroke='%2300A499' stroke-width='2.5'/></svg>";
+        const DEFAULT_SIG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='50' viewBox='0 0 150 50'><path d='M10,25 Q30,5 60,35 T110,15 T140,30' fill='none' stroke='%23091442' stroke-width='2.5'/></svg>";
         const DEFAULT_SIG_B = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='50' viewBox='0 0 150 50'><path d='M15,35 C35,10 50,45 80,15 C100,5 120,40 140,20' fill='none' stroke='%23091442' stroke-width='2'/></svg>";
 
         const DEMO_CERTIFICATES = [
@@ -785,7 +756,7 @@
                 endDate: "2026-03-05",
                 issueDate: "2026-03-10",
                 signatoryName: "Dr. Alejandro Montenegro",
-                signatoryRole: "Presidente General de Ecos Foundation",
+                signatoryRole: "Director Académico de Innova Labs",
                 signatureImage: DEFAULT_SIG
             },
             {
@@ -799,11 +770,11 @@
                 endDate: "2026-04-15",
                 issueDate: "2026-04-22",
                 signatoryName: "Dra. Beatriz Cárdenas",
-                signatoryRole: "Directora Académica de Innova Labs",
+                signatoryRole: "Directora Ejecutiva de Innova Labs",
                 signatureImage: DEFAULT_SIG_B
             },
             {
-                code: "ECOS-2026-991A",
+                code: "IL-2026-991A",
                 studentName: "Lucía Fernanda Montenegro Solís",
                 studentId: "20.112.334",
                 certType: "Especialización",
@@ -813,7 +784,7 @@
                 endDate: "2026-05-10",
                 issueDate: "2026-05-15",
                 signatoryName: "Dr. Alejandro Montenegro",
-                signatoryRole: "Presidente General de Ecos Foundation",
+                signatoryRole: "Director Académico de Innova Labs",
                 signatureImage: DEFAULT_SIG
             }
         ];
@@ -906,13 +877,13 @@
             const panelQr = document.getElementById("panel-qr");
 
             if (tabType === 'code') {
-                tabCode.className = "flex-1 py-4 text-center font-bold text-xs sm:text-sm border-b-2 border-tealEcos text-tealEcos flex items-center justify-center gap-2";
+                tabCode.className = "flex-1 py-4 text-center font-bold text-xs sm:text-sm border-b-2 border-navy-900 text-navy-900 flex items-center justify-center gap-2";
                 tabQr.className = "flex-1 py-4 text-center font-bold text-xs sm:text-sm border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center justify-center gap-2";
                 panelCode.classList.remove("hidden");
                 panelQr.classList.add("hidden");
             } else {
                 tabCode.className = "flex-1 py-4 text-center font-bold text-xs sm:text-sm border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center justify-center gap-2";
-                tabQr.className = "flex-1 py-4 text-center font-bold text-xs sm:text-sm border-b-2 border-tealEcos text-tealEcos flex items-center justify-center gap-2";
+                tabQr.className = "flex-1 py-4 text-center font-bold text-xs sm:text-sm border-b-2 border-navy-900 text-navy-900 flex items-center justify-center gap-2";
                 panelCode.classList.add("hidden");
                 panelQr.classList.remove("hidden");
             }
@@ -930,12 +901,12 @@
             toastMsg.innerText = message;
 
             if (isError) {
-                toastEl.classList.replace("border-tealEcos", "border-red-500");
+                toastEl.classList.replace("border-navy-900", "border-red-500");
                 iconBox.className = "p-1 rounded-lg bg-red-100 text-red-600";
                 iconBox.innerHTML = `<i data-lucide="alert-circle" class="w-5 h-5"></i>`;
             } else {
-                toastEl.classList.replace("border-red-500", "border-tealEcos");
-                iconBox.className = "p-1 rounded-lg bg-tealEcos-light text-tealEcos";
+                toastEl.classList.replace("border-red-500", "border-navy-900");
+                iconBox.className = "p-1 rounded-lg bg-slate-100 text-navy-900";
                 iconBox.innerHTML = `<i data-lucide="badge-check" class="w-5 h-5"></i>`;
             }
 
@@ -1015,9 +986,9 @@
 
             // Dar efecto visual de autocompletado antes de verificar
             const inputField = document.getElementById("search-code-input");
-            inputField.classList.add("ring-4", "ring-tealEcos/30", "bg-tealEcos-light/20");
+            inputField.classList.add("ring-4", "ring-navy-900/30", "bg-navy-50");
             setTimeout(() => {
-                inputField.classList.remove("ring-4", "ring-tealEcos/30", "bg-tealEcos-light/20");
+                inputField.classList.remove("ring-4", "ring-navy-900/30", "bg-navy-50");
             }, 1000);
 
             processVerificationFlow(processedCode);
@@ -1116,8 +1087,8 @@
             document.getElementById("diploma-end-date").innerText = formatDateToSpanish(verifiedMatch.endDate);
 
             // Renderizado de FIRMANTE, CARGO y FIRMA SUBIDA
-            document.getElementById("diploma-signature-name").innerText = verifiedMatch.signatoryName || "Dr. Alejandro Montenegro";
-            document.getElementById("diploma-signature-role").innerText = verifiedMatch.signatoryRole || "Presidente General de Ecos Foundation";
+            document.getElementById("diploma-signature-name").innerText = verifiedMatch.signatoryName || "Director Académico";
+            document.getElementById("diploma-signature-role").innerText = verifiedMatch.signatoryRole || "Dirección Académica de Innova Labs";
 
             const sigImg = document.getElementById("diploma-signature-img");
             if (verifiedMatch.signatureImage) {
@@ -1175,7 +1146,7 @@
             localStorage.setItem("innovalabs_config", JSON.stringify(systemConfig));
         }
 
-        // --- 10. GESTIÓN DE SUBIDA Y CARGA DE FIRMA (NUEVO) ---
+        // --- 10. GESTIÓN DE SUBIDA Y CARGA DE FIRMA ---
         function handleSignatureFileUpload(input) {
             const file = input.files[0];
             if (file) {
